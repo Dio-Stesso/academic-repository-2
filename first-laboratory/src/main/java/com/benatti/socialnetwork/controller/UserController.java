@@ -67,7 +67,7 @@ public class UserController {
     }
 
     @PostMapping("/reset-password")
-    public String sendIdForResetPassword(@RequestBody @Email @Valid String email) {
+    public ResponseEntity<Object> sendIdForResetPassword(@RequestBody @Email @Valid String email) {
         Optional<User> optionalUser = userService.findByUsernameOrEmail("", email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -76,7 +76,7 @@ public class UserController {
                 userService.save(user);
             }
         }
-        return "Bad";
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/reset-password/{uuid}")
