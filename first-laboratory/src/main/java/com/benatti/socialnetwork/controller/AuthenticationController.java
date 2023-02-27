@@ -32,7 +32,6 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
         this.userMapper = userMapper;
         this.jwtTokenProvider = jwtTokenProvider;
-
     }
 
     @PostMapping("/register")
